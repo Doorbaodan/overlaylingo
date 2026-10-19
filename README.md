@@ -16,7 +16,7 @@ Windows 屏幕文本实时翻译悬浮助手 —— 面向游戏 / 影视字幕�
 
 ## 下载安装
 
-> 安装包见 [Releases](https://github.com/overlaylingo/overlaylingo/releases)。
+> 安装包见 [Releases](https://github.com/Doorbaodan/overlaylingo/releases)。
 
 - 仅支持 **Windows 10 / 11**（x64）
 - 两种安装方式：`OverlayLingo-*-setup.exe`（安装版）或 `OverlayLingo-*-portable.exe`（绿色便携版）

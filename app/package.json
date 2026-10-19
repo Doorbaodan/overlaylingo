@@ -5,7 +5,7 @@
   "main": "./out/main/index.js",
   "author": "OverlayLingo",
   "license": "MIT",
-  "homepage": "https://github.com/overlaylingo/overlaylingo",
+  "homepage": "https://github.com/Doorbaodan/overlaylingo",
   "scripts": {
     "dev": "electron-vite dev",
     "build": "electron-vite build",
