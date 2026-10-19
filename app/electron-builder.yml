@@ -1,0 +1,44 @@
+appId: com.overlaylingo.app
+productName: OverlayLingo
+copyright: Copyright © 2026 OverlayLingo contributors
+directories:
+  buildResources: build
+  output: release
+
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - '!scripts/*'
+
+# 原生模块必须解出 asar，否则 .node 无法加载
+asarUnpack:
+  - '**/node_modules/better-sqlite3/**'
+
+win:
+  icon: resources/icon.png
+  executableName: OverlayLingo
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 浮译
+  deleteAppDataOnUninstall: false
+  artifactName: OverlayLingo-${version}-setup.${ext}
+
+portable:
+  artifactName: OverlayLingo-${version}-portable.${ext}
