@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from 'electron'
+import { clipboard, contextBridge, ipcRenderer } from 'electron'
 
 export interface Rect {
   x: number
@@ -50,6 +50,9 @@ export interface ChatMessage {
 }
 
 const api = {
+  clipboard: {
+    writeText: (text: string): void => clipboard.writeText(text)
+  },
   overlay: {
     toggle: (): void => ipcRenderer.send('overlay:toggle'),
     hide: (): void => ipcRenderer.send('overlay:hide'),

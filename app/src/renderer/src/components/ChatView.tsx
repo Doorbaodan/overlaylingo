@@ -13,6 +13,7 @@ interface Props {
 
 export default function ChatView({ task, messages, captureState, busy, onSend, onRegenerate }: Props) {
   const [input, setInput] = useState('')
+  const [copiedId, setCopiedId] = useState<string | null>(null)
   const listRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -25,6 +26,14 @@ export default function ChatView({ task, messages, captureState, busy, onSend, o
     if (!c || busy) return
     setInput('')
     onSend(c)
+  }
+
+  const copy = (id: string, content: string): void => {
+    window.api.clipboard.writeText(content)
+    setCopiedId(id)
+    window.setTimeout(() => {
+      setCopiedId((cur) => (cur === id ? null : cur))
+    }, 1500)
   }
 
   // 最后一条 assistant 消息的索引（用于显示重新生成按钮）
@@ -63,11 +72,16 @@ export default function ChatView({ task, messages, captureState, busy, onSend, o
           <div key={m.id} className={`msg ${m.role}`}>
             <div className="msg-bubble">
               <span className="msg-content">{m.content}</span>
-              {m.role === 'assistant' && i === lastAssistantIdx && (
-                <button className="regen-btn" onClick={onRegenerate} disabled={busy}>
-                  ↻ 重新生成
+              <div className="msg-actions">
+                <button className="copy-btn" onClick={() => copy(m.id, m.content)}>
+                  {copiedId === m.id ? '已复制' : '复制'}
                 </button>
-              )}
+                {m.role === 'assistant' && i === lastAssistantIdx && (
+                  <button className="regen-btn" onClick={onRegenerate} disabled={busy}>
+                    ↻ 重新生成
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         ))}

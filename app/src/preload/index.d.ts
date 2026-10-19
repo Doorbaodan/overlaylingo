@@ -54,6 +54,9 @@ export interface SelectionInit {
 }
 
 export interface Api {
+  clipboard: {
+    writeText: (text: string) => void
+  }
   overlay: {
     toggle: () => void
     hide: () => void

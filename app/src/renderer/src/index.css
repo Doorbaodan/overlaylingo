@@ -1360,11 +1360,34 @@ kbd {
   display: block;
   white-space: pre-wrap;
   word-break: break-word;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.msg-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.copy-btn {
+  padding: 3px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: var(--hover);
+  color: var(--text);
 }
 
 .regen-btn {
   display: block;
-  margin-top: 8px;
   padding: 3px 10px;
   border: 1px solid var(--border-strong);
   border-radius: 6px;
